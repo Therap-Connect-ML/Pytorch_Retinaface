@@ -3,7 +3,7 @@ import random
 import cv2
 import numpy as np
 
-from utils.box_utils import matrix_iof
+from ..utils.box_utils import matrix_iof
 
 
 def _crop(image, boxes, labels, landm, img_dim):

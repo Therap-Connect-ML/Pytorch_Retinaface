@@ -5,9 +5,10 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torchvision.models._utils as _utils
 import torchvision.models.detection.backbone_utils as backbone_utils
-from models.net import FPN as FPN
-from models.net import SSH as SSH
-from models.net import MobileNetV1 as MobileNetV1
+
+from ..models.net import FPN as FPN
+from ..models.net import SSH as SSH
+from ..models.net import MobileNetV1 as MobileNetV1
 
 
 class ClassHead(nn.Module):
