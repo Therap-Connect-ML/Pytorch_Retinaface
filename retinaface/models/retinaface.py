@@ -81,7 +81,9 @@ class RetinaFace(nn.Module):
         elif cfg["name"] == "Resnet50":
             import torchvision.models as models
 
-            backbone = models.resnet50(pretrained=cfg["pretrain"])
+            backbone = models.resnet50(
+                weights=models.ResNet50_Weights.DEFAULT if cfg["pretrain"] else None
+            )
 
         self.body = _utils.IntermediateLayerGetter(backbone, cfg["return_layers"])
         in_channels_stage2 = cfg["in_channel"]
