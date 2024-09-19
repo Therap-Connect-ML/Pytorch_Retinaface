@@ -5,14 +5,17 @@ license = "LICENSE.md"
 name = "retinaface"
 packages = [{include = "retinaface"}]
 readme = "README.md"
-version = "1.0.0"
+version = "0.0.0"
 
 [tool.poetry.dependencies]
+opencv-python = "^4.10.0.84"
 python = "^3.8"
 torch = ">=1.1.0"
 torchvision = ">=0.3.0"
-opencv-python = "^4.10.0.84"
+
+[tool.poetry-dynamic-versioning]
+enable = true
 
 [build-system]
-build-backend = "poetry.core.masonry.api"
-requires = ["poetry-core"]
+build-backend = "poetry_dynamic_versioning.backend"
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning>=1.0.0,<2.0.0"]
