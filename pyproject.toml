@@ -1,0 +1,18 @@
+[tool.poetry]
+authors = ["biubug6", "Meheraj Hossain <meheraj.hossain@therapservices.net>", "Raheeb Hassan <raheeb.hassan@therapservices.net>"]
+description = "A PyTorch implementation of RetinaFace: Single-stage Dense Face Localisation in the Wild (https://arxiv.org/abs/1905.00641)."
+license = "LICENSE.md"
+name = "retinaface"
+packages = [{include = "retinaface"}]
+readme = "README.md"
+version = "1.0.0"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+torch = ">=1.1.0"
+torchvision = ">=0.3.0"
+opencv-python = "^4.10.0.84"
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]
