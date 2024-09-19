@@ -29,12 +29,14 @@ jobs:
         plugins: poetry-dynamic-versioning
     
     - name: Load cached venv
+      id: cache
       uses: actions/cache@v4
       with:
         path: .venv
         key: poetry-venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
 
     - name: Install dependencies
+      if: steps.cache.outputs.cache-hit != 'true'
       run: poetry install --no-dev
 
     - name: Build the package
@@ -47,6 +49,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        for file in dist/*; do
+        for file in dist/*.whl; do
           gh release upload ${{ github.ref_name }} "$file"
         done
