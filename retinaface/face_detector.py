@@ -41,6 +41,8 @@ class FaceDetector:
         self.conf_threshold = conf_threshold
         self.nms_threshold = nms_threshold
         self.top_k = top_k
+        
+        self.device = device
 
         self.cfg = cfg_re50 if backbone == "resnet50" else cfg_mnet
         self.cfg["pretrain"] = (
@@ -50,7 +52,6 @@ class FaceDetector:
         self.model = RetinaFace(cfg=self.cfg, phase="test")
         self._load_weights(pretrained_path=backbone_weights)
 
-        self.device = device
         self.model = self.model.to(device)
         self.model.eval()
 
