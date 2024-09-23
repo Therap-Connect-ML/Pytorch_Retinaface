@@ -55,9 +55,7 @@ class FaceDetector:
         self.model.eval()
 
     def _load_weights(self, pretrained_path):
-        pretrained_state_dict = torch.load(
-            pretrained_path, map_location=lambda storage, loc: storage.cuda(self.device)
-        )
+        pretrained_state_dict = torch.load(pretrained_path, map_location=self.device)
 
         if "state_dict" in pretrained_state_dict.keys():
             pretrained_dict = remove_model_prefix(

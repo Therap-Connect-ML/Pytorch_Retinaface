@@ -8,10 +8,10 @@ readme = "README.md"
 version = "0.0.0"
 
 [tool.poetry.dependencies]
-opencv-python = "^4.10.0.84"
 python = "^3.8"
 torch = ">=1.1.0"
 torchvision = ">=0.3.0"
+opencv-python = "^4.10.0.84"
 
 [tool.poetry-dynamic-versioning]
 enable = true
