@@ -1,0 +1,46 @@
+name: Build and Attach Wheel to GitHub Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.8"
+
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+      with:
+        virtualenvs-create: true
+        virtualenvs-in-project: true
+        plugins: poetry-dynamic-versioning
+
+    - name: Install dependencies
+      run: poetry install --no-dev
+
+    - name: Build the package
+      run: poetry build
+
+    - name: List the built files
+      run: ls dist/
+
+    - name: Upload built files to release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        for file in dist/*.whl; do
+          gh release upload ${{ github.ref_name }} "$file"
+        done
